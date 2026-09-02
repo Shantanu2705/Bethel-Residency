@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Column 1: Branding */}
           <div className="space-y-6">
             <Link href="/" className="inline-block">
-              <Image src="/logo.jpeg" alt="Bethal Residency Logo" width={80} height={80} className="object-contain rounded-sm" />
+              <Image src="/logo.jpeg" alt="Bethal Residency Logo" width={160} height={160} className="h-20 md:h-24 w-auto object-contain rounded-sm" />
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed max-w-sm">
               Experience comfort, warmth, and peaceful hospitality at Bethal Residency. More than a stay, a place to feel at home.

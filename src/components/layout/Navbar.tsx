@@ -37,9 +37,8 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-        {/* Logo */}
         <Link href="/" className="flex items-center z-50">
-          <Image src="/logo.jpeg" alt="Bethal Residency Logo" width={60} height={60} className="object-contain rounded-sm" />
+          <Image src="/logo.jpeg" alt="Bethal Residency Logo" width={140} height={140} className="h-16 md:h-20 w-auto object-contain rounded-sm" priority />
         </Link>
 
         {/* Desktop Nav */}
