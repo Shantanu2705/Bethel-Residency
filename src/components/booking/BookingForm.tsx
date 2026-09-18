@@ -4,17 +4,14 @@ import { useState, useTransition, useEffect } from 'react';
 import { createBooking } from '@/actions/booking';
 import { Button } from '@/components/ui/Button';
 import { useAuth } from '@/context/AuthContext';
+import toast from 'react-hot-toast';
 
 export function BookingForm() {
   const { user } = useAuth();
   const [isPending, startTransition] = useTransition();
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(false);
 
     const formData = new FormData(e.currentTarget);
     const data = {
@@ -32,42 +29,19 @@ export function BookingForm() {
     startTransition(async () => {
       const result = await createBooking(data);
       if (result.success) {
-        setSuccess(true);
+        toast.success('Reservation Confirmed! We will contact you shortly.');
+        // Optionally reset the form here
+        (e.target as HTMLFormElement).reset();
       } else {
-        setError(result.error || 'Failed to submit booking');
+        toast.error(result.error || 'Failed to submit booking');
       }
     });
   };
-
-  if (success) {
-    return (
-      <div className="p-8 bg-green-50 rounded-2xl border border-green-200 text-center animate-in fade-in zoom-in duration-300">
-        <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h3 className="text-2xl font-bold text-green-900 mb-2">Reservation Confirmed!</h3>
-        <p className="text-green-700 mb-6">
-          Thank you for choosing Bethel Residency. We have received your booking request and will contact you shortly.
-        </p>
-        <Button onClick={() => setSuccess(false)} variant="outline">
-          Book Another Room
-        </Button>
-      </div>
-    );
-  }
 
   return (
     <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl shadow-black/5 border border-gray-100">
       <h3 className="text-2xl font-semibold mb-6">Book Your Stay</h3>
       
-      {error && (
-        <div className="p-4 mb-6 bg-red-50 text-red-700 rounded-lg border border-red-200">
-          {error}
-        </div>
-      )}
-
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">

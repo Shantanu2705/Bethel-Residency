@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
+
 export default function DiningPage() {
   return (
     <main className="pt-32 pb-24">

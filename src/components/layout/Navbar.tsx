@@ -49,9 +49,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium tracking-wide transition-colors hover:text-brand-green ${
-                isScrolled ? "text-brand-charcoal" : "text-brand-cream mix-blend-difference"
-              }`}
+              className="text-sm font-medium tracking-wide transition-colors hover:text-brand-green text-brand-charcoal"
             >
               {link.name}
             </Link>
@@ -63,18 +61,14 @@ export default function Navbar() {
           {!user ? (
             <Link
               href="/login"
-              className={`hidden md:block text-sm font-medium transition-colors hover:text-brand-green ${
-                isScrolled ? "text-brand-charcoal" : "text-brand-cream mix-blend-difference"
-              }`}
+              className="hidden md:block text-sm font-medium transition-colors hover:text-brand-green text-brand-charcoal"
             >
               Sign In
             </Link>
           ) : (
             <Link
               href={isAdmin ? "/admin" : "/dashboard"}
-              className={`hidden md:block text-sm font-medium transition-colors hover:text-brand-green ${
-                isScrolled ? "text-brand-charcoal" : "text-brand-cream mix-blend-difference"
-              }`}
+              className="hidden md:block text-sm font-medium transition-colors hover:text-brand-green text-brand-charcoal"
             >
               {isAdmin ? "Admin" : "Dashboard"}
             </Link>
@@ -93,9 +87,7 @@ export default function Navbar() {
           
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden p-2 transition-colors ${
-              isScrolled || isMobileMenuOpen ? "text-brand-charcoal" : "text-brand-cream mix-blend-difference"
-            }`}
+            className="lg:hidden p-2 transition-colors text-brand-charcoal"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

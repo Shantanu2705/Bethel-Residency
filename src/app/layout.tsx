@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { AuthProvider } from "@/context/AuthContext";
+import { Toaster } from "react-hot-toast";
+import NextTopLoader from "nextjs-toploader";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -28,6 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} h-full antialiased scroll-smooth`}>
       <body className="min-h-full flex flex-col font-sans bg-brand-cream text-brand-charcoal">
+        <NextTopLoader color="#1e293b" showSpinner={false} />
+        <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
         <AuthProvider>
           <Navbar />
           <main className="flex-grow">{children}</main>

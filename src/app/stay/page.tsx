@@ -1,6 +1,12 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RoomCard } from "@/components/stay/RoomCard";
 import { BookingForm } from "@/components/booking/BookingForm";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Rooms & Suites | Bethel Residency",
+  description: "Explore our luxurious deluxe rooms and family suites. Book your stay directly for the best rates at Bethel Residency.",
+};
 
 export default function StayPage() {
   const allRooms = [
