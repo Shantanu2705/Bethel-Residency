@@ -5,8 +5,10 @@ import Link from "next/link";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar() {
+  const { user, isAdmin } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -58,8 +60,28 @@ export default function Navbar() {
 
         {/* CTA & Mobile Toggle */}
         <div className="flex items-center gap-4 z-50">
+          {!user ? (
+            <Link
+              href="/login"
+              className={`hidden md:block text-sm font-medium transition-colors hover:text-brand-green ${
+                isScrolled ? "text-brand-charcoal" : "text-brand-cream mix-blend-difference"
+              }`}
+            >
+              Sign In
+            </Link>
+          ) : (
+            <Link
+              href={isAdmin ? "/admin" : "/dashboard"}
+              className={`hidden md:block text-sm font-medium transition-colors hover:text-brand-green ${
+                isScrolled ? "text-brand-charcoal" : "text-brand-cream mix-blend-difference"
+              }`}
+            >
+              {isAdmin ? "Admin" : "Dashboard"}
+            </Link>
+          )}
+
           <Link
-            href="/booking"
+            href="/stay#book-now"
             className={`hidden md:block px-6 py-2.5 text-sm font-medium uppercase tracking-wider transition-all duration-300 ${
               isScrolled
                 ? "bg-brand-charcoal text-brand-cream hover:bg-brand-green"

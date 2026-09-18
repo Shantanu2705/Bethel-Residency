@@ -1,5 +1,6 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RoomCard } from "@/components/stay/RoomCard";
+import { BookingForm } from "@/components/booking/BookingForm";
 
 export default function StayPage() {
   const allRooms = [
@@ -53,6 +54,16 @@ export default function StayPage() {
           {allRooms.map((room) => (
             <RoomCard key={room.id} {...room} />
           ))}
+        </div>
+        
+        <div className="mt-32 max-w-4xl mx-auto" id="book-now">
+          <SectionHeading 
+            title="Make a Reservation" 
+            subtitle="Book your stay with us directly for the best rates and personalized service."
+          />
+          <div className="mt-12">
+            <BookingForm />
+          </div>
         </div>
       </div>
     </main>
